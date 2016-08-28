@@ -3,7 +3,7 @@
 # Created by yaochao on 2016/8/28
 
 from scrapy.spiders import Spider
-from scrapy.linkextractors import LinkExtractor
+
 
 class NetEaseMusicSpider(Spider):
     name = 'neteasemusic'

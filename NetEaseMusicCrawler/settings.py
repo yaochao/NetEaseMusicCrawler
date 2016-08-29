@@ -19,7 +19,10 @@ NEWSPIDER_MODULE = 'NetEaseMusicCrawler.spiders'
 #USER_AGENT = 'NetEaseMusicCrawler (+http://www.yourdomain.com)'
 
 # Obey robots.txt rules
-ROBOTSTXT_OBEY = True
+ROBOTSTXT_OBEY = False
+
+# 取消重定向
+REDIRECT_ENABLED = False
 
 # Configure maximum concurrent requests performed by Scrapy (default: 16)
 #CONCURRENT_REQUESTS = 32

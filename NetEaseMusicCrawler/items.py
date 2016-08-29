@@ -10,7 +10,7 @@ from scrapy import Field
 
 class NeteasemusicItem(Field):
     _id = Field()  # user id as a mongodb item's _id
-    nickname = Field() # 昵称
+    name = Field() # 昵称
     header_img = Field() # 头像
     sex = Field() # 性别
     is_v = Field() # 是否认证
@@ -27,3 +27,4 @@ class NeteasemusicItem(Field):
     all_songs_count = Field() # 累计收听歌曲数
     week_songs_rank = Field() # 最近一周收听排行
     all_songs_rank = Field() # 所有时间收听排行
+    url = Field()

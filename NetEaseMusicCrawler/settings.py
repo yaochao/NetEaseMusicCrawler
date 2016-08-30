@@ -24,6 +24,11 @@ ROBOTSTXT_OBEY = False
 # 取消重定向
 REDIRECT_ENABLED = False
 
+# splash
+SPLASH_URL = 'http://127.0.0.1:8050'
+DUPEFILTER_CLASS = 'scrapy_splash.SplashAwareDupeFilter'
+HTTPCACHE_STORAGE = 'scrapy_splash.SplashAwareFSCacheStorage'
+
 # Configure maximum concurrent requests performed by Scrapy (default: 16)
 #CONCURRENT_REQUESTS = 32
 
@@ -49,14 +54,20 @@ REDIRECT_ENABLED = False
 
 # Enable or disable spider middlewares
 # See http://scrapy.readthedocs.org/en/latest/topics/spider-middleware.html
-#SPIDER_MIDDLEWARES = {
-#    'NetEaseMusicCrawler.middlewares.MyCustomSpiderMiddleware': 543,
-#}
+SPIDER_MIDDLEWARES = {
+    # splash
+   'scrapy_splash.SplashDeduplicateArgsMiddleware': 100,
+}
 
 # Enable or disable downloader middlewares
 # See http://scrapy.readthedocs.org/en/latest/topics/downloader-middleware.html
 DOWNLOADER_MIDDLEWARES = {
-    'NetEaseMusicCrawler.misc.downloadmiddlewares.UserAgentMiddleware': 543
+    # user-agent
+    'NetEaseMusicCrawler.misc.downloadmiddlewares.UserAgentMiddleware': 543,
+    # splash
+    'scrapy_splash.SplashCookiesMiddleware': 723,
+    'scrapy_splash.SplashMiddleware': 725,
+    'scrapy.downloadermiddlewares.httpcompression.HttpCompressionMiddleware': 810,
 }
 
 # Enable or disable extensions

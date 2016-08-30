@@ -11,7 +11,8 @@ from scrapy import Field
 class NeteasemusicItem(Field):
     _id = Field()  # user id as a mongodb item's _id
     name = Field() # 昵称
-    header_img = Field() # 头像
+    level = Field() # 等级
+    header = Field() # 头像
     sex = Field() # 性别
     is_v = Field() # 是否认证
     v_text = Field() # 认证资料

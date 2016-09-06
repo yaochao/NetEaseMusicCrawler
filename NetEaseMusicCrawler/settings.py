@@ -15,6 +15,10 @@ SPIDER_MODULES = ['NetEaseMusicCrawler.spiders']
 NEWSPIDER_MODULE = 'NetEaseMusicCrawler.spiders'
 
 
+# for development, do not forget close it
+# HTTPCACHE_ENABLED = True
+
+
 # Crawl responsibly by identifying yourself (and your website) on the user-agent
 #USER_AGENT = 'NetEaseMusicCrawler (+http://www.yourdomain.com)'
 
@@ -56,6 +60,7 @@ ROBOTSTXT_OBEY = False
 # Enable or disable downloader middlewares
 # See http://scrapy.readthedocs.org/en/latest/topics/downloader-middleware.html
 DOWNLOADER_MIDDLEWARES = {
+    'scrapy.downloadermiddlewares.useragent.UserAgentMiddleware': None,
     'NetEaseMusicCrawler.misc.downloadmiddlewares.UserAgentMiddleware': 543
 }
 

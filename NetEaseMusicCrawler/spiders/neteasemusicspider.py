@@ -124,6 +124,7 @@ class NetEaseMusicSpider(Spider):
                 follows[uid] = title
             item['follows'] = follows
         except Exception as e:
+            item['follows'] = None
             print e
 
         # driver.close()
@@ -151,14 +152,63 @@ class NetEaseMusicSpider(Spider):
                 fans[uid] = title
             item['fans'] = fans
         except Exception as e:
+            item['fans'] = None
             print e
 
         # driver.close()
         request = Request(url='http://music.163.com/user/songs/rank?id=' + _id, callback=self.parse_songs_rank)
         request.meta['item'] = copy.deepcopy(item)
-        print item
         yield request
 
     def parse_songs_rank(self, response):
+        url = response.url
+        _id = url.split('=')[-1]
+        item = response.meta['item']
+        driver = response.meta['driver']
+        driver.switch_to.default_content()
+        g_iframe = driver.find_elements_by_tag_name('iframe')[0]
+        driver.switch_to.frame(g_iframe)
+        try:
+            spns = driver.find_elements_by_xpath('//span[@class="txt"]')
+            week_songs = {}
+            for song in spns:
+                a = song.find_element_by_tag_name('a')
+                href = a.get_attribute('href')
+                uid = href.split('=')[-1]
+                b = a.find_element_by_tag_name('b')
+                title = b.get_attribute('title')
+                artist = song.find_element_by_tag_name('span').find_element_by_tag_name('span').get_attribute('title')
+                song_name = title + ' - ' + artist
+                week_songs[uid] = song_name
+                print song_name
+            item['week_songs'] = week_songs
+        except Exception as e:
+            item['week_songs'] = None
+            print e
 
-        pass
+        try:
+            driver.find_element_by_xpath('//*[@id="songsall"]').click()
+            spns = driver.find_elements_by_xpath('//span[@class="txt"]')
+            all_songs = {}
+            for song in spns:
+                a = song.find_element_by_tag_name('a')
+                href = a.get_attribute('href')
+                uid = href.split('=')[-1]
+                b = a.find_element_by_tag_name('b')
+                title = b.get_attribute('title')
+                artist = song.find_element_by_tag_name('span').find_element_by_tag_name('span').get_attribute('title')
+                song_name = title + ' - ' + artist
+                all_songs[uid] = song_name
+                print song_name
+            item['all_songs'] = all_songs
+        except Exception as e:
+            item['all_songs'] = None
+            print e
+
+        print item
+
+        # 下一个用户,从粉丝和关注里面选出来
+        allids = item['follows'].keys() + item['fans'].keys()
+        for uid in allids:
+            request = Request(url='http://music.163.com/user/home?id=' + uid, callback=self.parse)
+            yield request

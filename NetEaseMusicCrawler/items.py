@@ -26,6 +26,6 @@ class NeteasemusicItem(Field):
     age = Field() # 年龄
     sns = Field() # 社交网络
     all_songs_count = Field() # 累计收听歌曲数
-    week_songs_rank = Field() # 最近一周收听排行
-    all_songs_rank = Field() # 所有时间收听排行
+    week_songs = Field() # 最近一周收听排行
+    all_songs = Field() # 所有时间收听排行
     url = Field()

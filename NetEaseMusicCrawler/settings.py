@@ -15,8 +15,21 @@ SPIDER_MODULES = ['NetEaseMusicCrawler.spiders']
 NEWSPIDER_MODULE = 'NetEaseMusicCrawler.spiders'
 
 
-# for development, do not forget close it
-# HTTPCACHE_ENABLED = True
+
+# 默认的下载器
+# DOWNLOAD_HANDLERS_BASE = {
+#     'file': 'scrapy.core.downloader.handlers.file.FileDownloadHandler',
+#     'http': 'scrapy.core.downloader.handlers.http.HttpDownloadHandler',
+#     'https': 'scrapy.core.downloader.handlers.http.HttpDownloadHandler',
+#     's3': 'scrapy.core.downloader.handlers.s3.S3DownloadHandler',
+# }
+
+# 自定义下载器会覆盖上面的
+DOWNLOAD_HANDLERS = {
+    'http': 'NetEaseMusicCrawler.misc.downloadhandlers.HttpDownloadHandler',
+    'https': 'NetEaseMusicCrawler.misc.downloadhandlers.HttpDownloadHandler',
+}
+
 
 
 # Crawl responsibly by identifying yourself (and your website) on the user-agent
@@ -72,9 +85,9 @@ DOWNLOADER_MIDDLEWARES = {
 
 # Configure item pipelines
 # See http://scrapy.readthedocs.org/en/latest/topics/item-pipeline.html
-#ITEM_PIPELINES = {
-#    'NetEaseMusicCrawler.pipelines.SomePipeline': 300,
-#}
+ITEM_PIPELINES = {
+   'NetEaseMusicCrawler.pipelines.NeteasemusiccrawlerPipeline': 300,
+}
 
 # Enable and configure the AutoThrottle extension (disabled by default)
 # See http://doc.scrapy.org/en/latest/topics/autothrottle.html

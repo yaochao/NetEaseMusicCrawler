@@ -5,3 +5,4 @@
 from scrapy import cmdline
 
 cmdline.execute('scrapy crawl neteasemusic'.split())
+# cmdline.execute('scrapy crawl demo'.split())

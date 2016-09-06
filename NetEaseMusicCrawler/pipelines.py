@@ -8,4 +8,6 @@
 
 class NeteasemusiccrawlerPipeline(object):
     def process_item(self, item, spider):
-        return item
+        print 'process_item'
+        for key in item.keys():
+            print item[key]

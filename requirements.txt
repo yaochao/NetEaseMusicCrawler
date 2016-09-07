@@ -11,9 +11,12 @@ pyasn1==0.1.9
 pyasn1-modules==0.0.8
 pycparser==2.14
 PyDispatcher==2.0.5
+pymongo==3.3.0
 pyOpenSSL==16.1.0
 queuelib==1.4.2
 Scrapy==1.1.2
+scrapy-splash==0.7
+selenium==2.53.6
 service-identity==16.0.0
 six==1.10.0
 Twisted==16.4.0

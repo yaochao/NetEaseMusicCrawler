@@ -104,6 +104,7 @@ class NetEaseMusicSpider(Spider):
         request.meta['item'] = copy.deepcopy(item)
         yield request
 
+    # TODO: 翻页
     def parse_follows(self, response):
         ''' parse the follows '''
         url = response.url
@@ -132,6 +133,7 @@ class NetEaseMusicSpider(Spider):
         request.meta['item'] = copy.deepcopy(item)
         yield request
 
+    # TODO: 翻页
     def parse_fans(self, response):
         ''' parse the follows '''
         url = response.url

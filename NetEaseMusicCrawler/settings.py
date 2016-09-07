@@ -45,9 +45,6 @@ MONGO_COLLECTION = 'profile'
 # Obey robots.txt rules
 ROBOTSTXT_OBEY = False
 
-# 取消重定向
-# REDIRECT_ENABLED = False
-
 # Configure maximum concurrent requests performed by Scrapy (default: 16)
 #CONCURRENT_REQUESTS = 32
 

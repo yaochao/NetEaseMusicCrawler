@@ -31,6 +31,13 @@ DOWNLOAD_HANDLERS = {
 }
 
 
+# MONGODB
+MONGO_HOST = '127.0.0.1'
+MONGO_PORT = 27017
+MONGO_DB = 'neteasemusic'
+MONGO_COLLECTION = 'profile'
+
+
 
 # Crawl responsibly by identifying yourself (and your website) on the user-agent
 #USER_AGENT = 'NetEaseMusicCrawler (+http://www.yourdomain.com)'
@@ -86,7 +93,7 @@ DOWNLOADER_MIDDLEWARES = {
 # Configure item pipelines
 # See http://scrapy.readthedocs.org/en/latest/topics/item-pipeline.html
 ITEM_PIPELINES = {
-   'NetEaseMusicCrawler.pipelines.NeteasemusiccrawlerPipeline': 300,
+   'NetEaseMusicCrawler.pipelines.MongodbStorePipeline': 300,
 }
 
 # Enable and configure the AutoThrottle extension (disabled by default)

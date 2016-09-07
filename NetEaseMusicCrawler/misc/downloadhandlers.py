@@ -15,8 +15,8 @@ class HttpDownloadHandler(object):
         self.driver.quit()
 
     # TODO: 借助twisted的异步, 实现异步现在。
+    # TODO: 如何关闭webdriver
     def download_request(self, request, spider):
-        # url = urldefrag(request.url)[0]
         url = request.url
         print 'url....', url
         self.driver.get(url)

@@ -205,7 +205,7 @@ class NetEaseMusicSpider(Spider):
             item['all_songs'] = None
             print e
 
-        print item
+        yield item
 
         # 下一个用户,从粉丝和关注里面选出来
         allids = item['follows'].keys() + item['fans'].keys()
